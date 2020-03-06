@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="rates__rates_list_empty">Not loaded yet.</string>
+    <string name="rates__favorites_list_empty">No favorite currencies yet.</string>
+    <string name="rates__copied_to_clipboard">Copied: %s</string>
+    <string name="rates__copy_button_content_description">Copy %s</string>
+    <string name="rates__favorite_button_content_description">Favorite %s</string>
+    <string name="rates__apply_base_amount">Apply new amount</string>
+</resources>

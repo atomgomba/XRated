@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardElevation="1dp"
+    app:cardUseCompatPadding="true"
+    >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:foreground="?android:selectableItemBackgroundBorderless"
+        android:paddingVertical="16dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="0dp"
+        >
+
+        <ImageView
+            android:id="@+id/currencyFlagImage"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:importantForAccessibility="no"
+            android:scaleType="fitCenter"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/currency_flag_huf"
+            />
+
+        <TextView
+            android:id="@+id/currencyCodeText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="8dp"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+            app:layout_constraintBottom_toBottomOf="@id/currencyFlagImage"
+            app:layout_constraintEnd_toStartOf="@+id/favoriteButton"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@id/currencyFlagImage"
+            app:layout_constraintTop_toTopOf="@id/currencyFlagImage"
+            app:layout_constraintVertical_bias="0.0"
+            tools:text="HUF"
+            />
+
+        <TextView
+            android:id="@+id/valueText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="marquee"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/currencyFlagImage"
+            app:layout_constraintEnd_toEndOf="@id/currencyCodeText"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@id/currencyCodeText"
+            app:layout_constraintTop_toBottomOf="@id/currencyCodeText"
+            tools:text="0.340"
+            />
+
+        <ImageButton
+            android:id="@+id/copyButton"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="6dp"
+            android:background="?android:selectableItemBackgroundBorderless"
+            android:contentDescription="@string/rates__copy_button_content_description"
+            android:padding="6dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_outline_assignment_24"
+            app:layout_constraintBottom_toBottomOf="@id/valueText"
+            app:layout_constraintDimensionRatio="1"
+            app:layout_constraintEnd_toStartOf="@+id/favoriteButton"
+            app:layout_constraintTop_toTopOf="@id/currencyCodeText"
+            />
+
+        <ImageButton
+            android:id="@+id/favoriteButton"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="6dp"
+            android:background="?android:selectableItemBackgroundBorderless"
+            android:contentDescription="@string/rates__favorite_button_content_description"
+            android:padding="6dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/selector_favorite_button"
+            app:layout_constraintBottom_toBottomOf="@id/valueText"
+            app:layout_constraintDimensionRatio="1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/currencyCodeText"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>

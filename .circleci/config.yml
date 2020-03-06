@@ -1,0 +1,117 @@
+version: 2.1
+
+
+orbs:
+  android: circleci/android@0.2.1
+
+
+commands:
+  create-keystore-file:
+    steps:
+      - run:
+          name: Create keystore file
+          working_directory: app
+          command: echo ${KEYSTORE} | base64 --decode > ${KEYSTORE_PATH}
+
+  create-release-json-files:
+    steps:
+      - run:
+          name: Create configuration JSON files
+          working_directory: app
+          command: |
+            echo ${SERVICE_ACCOUNT_JSON} | base64 --decode > ${SERVICE_ACCOUNT_PATH}
+            echo ${GOOGLE_SERVICES_JSON} | base64 --decode > google-services.json
+
+  create-debug-json-files:
+    steps:
+      - run:
+          name: Create configuration JSON files
+          working_directory: app/src/debug
+          command: |
+            echo ${GOOGLE_SERVICES_JSON_DEBUG} | base64 --decode > google-services.json
+
+
+template-job: &template-job
+  executor: android/android
+  environment:
+    JAVA_TOOL_OPTIONS: "-Xmx1024m"
+    GRADLE_OPTS: "-Dorg.gradle.daemon=false -Dorg.gradle.workers.max=2"
+
+
+jobs:
+  build-debug-apk:
+    <<: *template-job
+    steps:
+      - checkout
+      - create-debug-json-files
+      - run:
+          name: Build debug APK
+          command: ./gradlew assembleDebug
+      - store_artifacts:
+          path: app/build/outputs/apk/debug/app-debug.apk
+          destination: xrated-debug.apk
+
+  build-release-apk:
+    <<: *template-job
+    steps:
+      - checkout
+      - create-keystore-file
+      - create-release-json-files
+      - run:
+          name: Build release APK
+          command: ./gradlew assembleRelease
+      - persist_to_workspace:
+          root: app/build/outputs/apk/release
+          paths:
+            - app-release.apk
+
+  # TODO
+  deploy-release-apk:
+    <<: *template-job
+    steps:
+      - checkout
+      - attach_workspace:
+          at: app
+      - create-release-json-files
+      - run:
+          command: ./gradlew bootstrap
+
+  test-units:
+    <<: *template-job
+    steps:
+      - checkout
+      - create-debug-json-files
+      - run:
+          name: Run all unit tests
+          command: ./gradlew testDebugUnitTest
+
+
+release-versions-only: &release-versions-only
+  filters:
+    tags:
+      only: /^v[0-9]+\.[0-9]+\.[0-9]+/
+    branches:
+      only: master
+
+
+workflows:
+  version: 2
+
+  test-and-build:
+    jobs:
+      - test-units
+      - build-debug-apk
+
+  deploy:
+    jobs:
+      - test-units:
+          <<: *release-versions-only
+      - build-release-apk:
+          <<: *release-versions-only
+          requires:
+            - test-units
+      - deploy-release-apk:
+          <<: *release-versions-only
+          type: approval
+          requires:
+            - build-release-apk

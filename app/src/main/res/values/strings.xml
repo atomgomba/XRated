@@ -1,0 +1,23 @@
+<resources>
+    <string name="home__activity_title">Exchange Rates</string>
+
+    <string name="home__menu__daily_rates">Daily rates</string>
+    <string name="home__menu__favorites">Favorites</string>
+    <string name="home__menu__information">Information</string>
+
+    <string name="home__toolbar__select_base_currency_hint">Long press on the list to select base currency.</string>
+
+    <string name="home__amount_editor__base_amount">Base amount:</string>
+
+    <string name="home__info__data">Current data set</string>
+    <string name="home__info__published_at">Published at:</string>
+    <string name="home__info__downloaded_at">Cached at:</string>
+    <string name="home__info__updates_note"><![CDATA[<b>Note:</b> Updated rates are published on business days at around %d:00 by the European Central Bank.]]></string>
+    <string name="home__info__app_info">@string/app_name</string>
+    <string name="home__info__version">Version:</string>
+    <string name="home__info__build_id">Build:</string>
+    <string name="home__info__clear_cache_button">Clear cache</string>
+
+    <string name="common__unknown_error">Unknown error, sorry :(</string>
+    <string name="common__not_available">N/A</string>
+</resources>
