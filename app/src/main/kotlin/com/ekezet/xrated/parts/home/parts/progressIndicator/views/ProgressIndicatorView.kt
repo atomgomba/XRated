@@ -13,7 +13,6 @@ import android.graphics.Paint.Style.FILL
 import android.graphics.PorterDuff.Mode
 import android.graphics.drawable.BitmapDrawable
 import androidx.core.animation.doOnEnd
-import androidx.core.animation.doOnStart
 import androidx.interpolator.view.animation.LinearOutSlowInInterpolator
 import com.ekezet.xrated.R
 import com.ekezet.xrated.base.di.ActivityScope
@@ -98,4 +97,4 @@ class ProgressIndicatorView @Inject constructor(context: Context) : BaseView(con
     private fun clearCanvas() {
         canvas.drawColor(Color.TRANSPARENT, Mode.CLEAR)
         background = BitmapDrawable(resources, bitmap)
-    }}
+    } }
