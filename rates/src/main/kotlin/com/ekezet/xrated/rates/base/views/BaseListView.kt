@@ -6,7 +6,6 @@ import android.content.ClipboardManager
 import android.content.Context
 import android.content.Context.CLIPBOARD_SERVICE
 import androidx.core.view.isInvisible
-import androidx.lifecycle.LifecycleOwner
 import com.ekezet.xrated.base.views.BaseView
 import com.ekezet.xrated.rates.R
 import com.ekezet.xrated.rates.base.BaseListSpec.View
