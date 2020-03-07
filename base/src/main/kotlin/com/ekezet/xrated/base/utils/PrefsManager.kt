@@ -8,6 +8,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.ConflatedBroadcastChannel
 import kotlinx.coroutines.launch
+import java.util.Locale
 import javax.inject.Inject
 import javax.inject.Named
 import javax.inject.Singleton
@@ -44,6 +45,21 @@ class PrefsManager @Inject constructor(@Named(APP) context: Context) : Coroutine
             publishChange(PREF_FAVORITES)
         }
 
+    var numFormatLocaleString: String
+        get() = prefs.getString(PREF_NUM_FORMAT_LOCALE, "")!!
+        set(value) {
+            prefs.edit { putString(PREF_NUM_FORMAT_LOCALE, value) }
+            numFormatLocale = if (value.isEmpty()) {
+                Locale.getDefault()
+            } else {
+                Locale(value)
+            }
+            publishChange(PREF_NUM_FORMAT_LOCALE)
+        }
+
+    var numFormatLocale: Locale = Locale.getDefault()
+        private set
+
     private fun publishChange(key: String) {
         launch {
             changesChannel.send(key)
@@ -54,5 +70,6 @@ class PrefsManager @Inject constructor(@Named(APP) context: Context) : Coroutine
         const val PREF_BASE_CURRENCY = "baseCurrency"
         const val PREF_BASE_AMOUNT = "baseAmount"
         const val PREF_FAVORITES = "favorites"
+        const val PREF_NUM_FORMAT_LOCALE = "numberFormatLocale"
     }
 }

@@ -5,6 +5,9 @@ import com.ekezet.xrated.base.BaseInteractor
 import com.ekezet.xrated.base.api.ApiResponse.FailureResponse
 import com.ekezet.xrated.base.api.ApiResponse.SuccessResponse
 import com.ekezet.xrated.base.utils.PrefsManager
+import com.ekezet.xrated.base.utils.PrefsManager.Companion.PREF_BASE_AMOUNT
+import com.ekezet.xrated.base.utils.PrefsManager.Companion.PREF_BASE_CURRENCY
+import com.ekezet.xrated.base.utils.PrefsManager.Companion.PREF_NUM_FORMAT_LOCALE
 import com.ekezet.xrated.rates.base.BaseListSpec.Interactor
 import com.ekezet.xrated.rates.base.BaseListSpec.View
 import com.ekezet.xrated.rates.base.items.viewmodels.ExchangeRateListItem
@@ -34,9 +37,9 @@ abstract class BaseListInteractor<V : View, IP : Interactor.Presenter<V>> constr
         }
         launch(Dispatchers.Main) {
             prefsManager.changesChannel.consumeEach {
-                if (it == PrefsManager.PREF_BASE_CURRENCY) {
+                if (it == PREF_BASE_CURRENCY) {
                     presenter.onBaseCurrencyChanged()
-                } else if (it == PrefsManager.PREF_BASE_AMOUNT) {
+                } else if (it in listOf(PREF_BASE_AMOUNT, PREF_NUM_FORMAT_LOCALE)) {
                     refreshExchangeRates()
                 }
             }
