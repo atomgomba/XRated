@@ -121,6 +121,7 @@ dependencies {
 
     implementation(project(":base"))
     implementation(project(":rates"))
+    implementation(project(":prefs"))
 
     testImplementation(Deps.Test.JUnit.api)
     testRuntimeOnly(Deps.Test.JUnit.engine)

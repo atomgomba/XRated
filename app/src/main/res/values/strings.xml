@@ -6,6 +6,7 @@
     <string name="home__menu__information">Information</string>
 
     <string name="home__toolbar__select_base_currency_hint">Long press on the list to select base currency.</string>
+    <string name="home__toolbar__preferences">Preferences</string>
 
     <string name="home__amount_editor__base_amount">Base amount:</string>
 

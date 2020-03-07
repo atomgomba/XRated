@@ -3,6 +3,7 @@ package com.ekezet.xrated.di
 import com.ekezet.xrated.App
 import com.ekezet.xrated.base.di.BaseModule
 import com.ekezet.xrated.parts.home.di.HomeModule
+import com.ekezet.xrated.prefs.parts.prefsScreen.di.PrefsScreenModule
 import com.ekezet.xrated.rates.di.RatesModule
 import dagger.Component
 import dagger.android.AndroidInjector
@@ -19,7 +20,8 @@ import javax.inject.Singleton
         AppModule::class,
         BaseModule::class,
         RatesModule::class,
-        HomeModule::class
+        HomeModule::class,
+        PrefsScreenModule::class
     ]
 )
 interface AppComponent : AndroidInjector<App> {

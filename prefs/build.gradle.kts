@@ -1,5 +1,3 @@
-apply(from = "versioning.gradle.kts")
-
 plugins {
     id("com.android.library")
     kotlin("android")
@@ -13,6 +11,10 @@ android {
     sourceSets {
         getByName("main") {
             java.srcDir("src/main/kotlin")
+            res.setSrcDirs(mutableListOf(
+                "src/main/res",
+                "src/main/res-transferwise"
+            ))
         }
         getByName("test") {
             java.srcDir("src/test/kotlin")
@@ -43,9 +45,9 @@ dependencies {
     implementation(Deps.Androidx.coreKtx)
     implementation(Deps.Androidx.appcompat)
     implementation(Deps.Androidx.constraintLayout)
+    implementation(Deps.Androidx.recyclerView)
     implementation(Deps.Androidx.Lifecycle.common)
     implementation(Deps.Androidx.Lifecycle.extensions)
-    implementation(Deps.Androidx.Lifecycle.runtimeKtx)
 
     implementation(Deps.material)
 
@@ -54,17 +56,10 @@ dependencies {
     implementation(Deps.Dagger.androidSupport)
     kapt(Deps.Dagger.androidProcessor)
 
-    implementation(Deps.OkHttp.OkHttp)
-    implementation(Deps.OkHttp.loggingInterceptor)
-
-    implementation(Deps.Moshi.moshi)
-    implementation(Deps.Moshi.moshiKotlin)
-    kapt(Deps.Moshi.moshiCodegen)
-
-    implementation(Deps.Retrofit.retrofit)
-
     implementation(Deps.timber)
-    implementation(Deps.jodaTime)
+
+    api(project(":base"))
+    api(project(":testing"))
 
     testImplementation(Deps.Test.JUnit.api)
     testRuntimeOnly(Deps.Test.JUnit.engine)
