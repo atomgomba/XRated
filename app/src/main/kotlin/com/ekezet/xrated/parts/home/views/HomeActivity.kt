@@ -31,11 +31,12 @@ class HomeActivity : BaseActivity<HomePart, View, View.Presenter>(), View {
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.AppTheme)
         super.onCreate(savedInstanceState)
-        setTitle(R.string.home__activity_title)
     }
 
     override fun setup(idRes: Int) {
         super.setup(idRes)
+        setSupportActionBar(toolbar)
+        supportActionBar!!.setTitle(R.string.home__activity_title)
         viewPager.adapter = menuPagerAdapter
         viewPager.registerOnPageChangeCallback(MyOnPageChangeCallback())
     }
