@@ -62,16 +62,11 @@ class HomePresenter @Inject constructor(
 
     override fun onBaseCurrencyClicked() {
         view.showMessage(t(R.string.home__toolbar__select_base_currency_hint))
+        leaveInfoPage()
     }
 
     override fun onBaseAmountChanged() {
-        if (view.pageIndex == pageIndexMap[R.id.navInfo]) {
-            if (interactor!!.hasFavorites()) {
-                view.pageIndex = pageIndexMap[R.id.navFavorites] ?: 1
-            } else {
-                view.pageIndex = pageIndexMap[R.id.navDailyRates] ?: 1
-            }
-        }
+        leaveInfoPage()
     }
 
     override fun onNavigationItemSelected(menuId: Int) {
@@ -80,5 +75,16 @@ class HomePresenter @Inject constructor(
 
     override fun onUserScrolledToPage(index: Int) {
         bottomMenuView.activateMenuItem(pageIdMap[index] ?: 0)
+    }
+
+    private fun leaveInfoPage() {
+        if (view.pageIndex != pageIndexMap[R.id.navInfo]) {
+            return
+        }
+        view.pageIndex = if (interactor!!.hasFavorites()) {
+            pageIndexMap[R.id.navFavorites] ?: 1
+        } else {
+            pageIndexMap[R.id.navDailyRates] ?: 1
+        }
     }
 }
