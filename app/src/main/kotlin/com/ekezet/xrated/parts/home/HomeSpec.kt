@@ -25,6 +25,7 @@ interface HomeSpec {
         fun setBaseCurrency(currencyCode: String)
         fun showMessage(text: CharSequence)
         fun showError(text: CharSequence)
+        fun expandToolbar()
 
         interface Presenter : IPresenter<View> {
             fun onPrepareOptionsMenu()

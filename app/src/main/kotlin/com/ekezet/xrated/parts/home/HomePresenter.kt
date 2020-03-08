@@ -1,5 +1,6 @@
 package com.ekezet.xrated.parts.home
 
+import androidx.annotation.IdRes
 import androidx.lifecycle.LifecycleOwner
 import com.ekezet.xrated.R
 import com.ekezet.xrated.base.BasePresenter
@@ -71,10 +72,12 @@ class HomePresenter @Inject constructor(
 
     override fun onNavigationItemSelected(menuId: Int) {
         view.pageIndex = pageIndexMap[menuId] ?: 0
+        onPageIdSelected(menuId)
     }
 
     override fun onUserScrolledToPage(index: Int) {
-        bottomMenuView.activateMenuItem(pageIdMap[index] ?: 0)
+        val pageId = pageIdMap[index] ?: 0
+        bottomMenuView.activateMenuItem(pageId)
     }
 
     private fun leaveInfoPage() {
@@ -85,6 +88,12 @@ class HomePresenter @Inject constructor(
             pageIndexMap[R.id.navFavorites] ?: 1
         } else {
             pageIndexMap[R.id.navDailyRates] ?: 1
+        }
+    }
+
+    private fun onPageIdSelected(@IdRes pageId: Int) {
+        if (pageId == R.id.navInfo) {
+            view.expandToolbar()
         }
     }
 }

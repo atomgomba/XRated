@@ -66,6 +66,10 @@ class HomeActivity : BaseActivity<HomePart, View, View.Presenter>(), View {
         Snackbar.make(viewPager, text, Snackbar.LENGTH_LONG).show()
     }
 
+    override fun expandToolbar() {
+        appBarLayout.setExpanded(true)
+    }
+
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         super.onCreateOptionsMenu(menu)
         menuInflater.inflate(R.menu.menu_options, menu)
