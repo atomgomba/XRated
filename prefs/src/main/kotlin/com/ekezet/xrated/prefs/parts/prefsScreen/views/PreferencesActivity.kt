@@ -2,22 +2,23 @@ package com.ekezet.xrated.prefs.parts.prefsScreen.views
 
 import android.content.Context
 import android.content.Intent
+import android.os.Bundle
 import android.view.MenuItem
-import com.ekezet.xrated.base.views.BaseActivity
-import com.ekezet.xrated.prefs.parts.prefsScreen.PrefsScreenPart
-import com.ekezet.xrated.prefs.parts.prefsScreen.PrefsScreenSpec.View
+import com.ekezet.xrated.prefs.R
+import dagger.android.support.DaggerAppCompatActivity
 
 /**
  * @author kiri
  */
-class PreferencesActivity : BaseActivity<PrefsScreenPart, View, View.Presenter>(), View {
-    override var localeName: CharSequence
-        get() = TODO("not implemented")
-        set(value) {}
-
-    override fun setup(idRes: Int) {
-        super.setup(idRes)
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+class PreferencesActivity : DaggerAppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_preferences)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.settingsFragmentContainer, PreferencesFragment::class.java, null)
+            .commit()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

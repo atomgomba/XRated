@@ -29,7 +29,7 @@ class HomeActivity : BaseActivity<HomePart, View, View.Presenter>(), View {
     private lateinit var baseCurrencyMenuItem: MenuItem
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        setTheme(R.style.AppTheme_NoActionBar)
+        setTheme(R.style.BaseTheme_NoActionBar)
         super.onCreate(savedInstanceState)
     }
 

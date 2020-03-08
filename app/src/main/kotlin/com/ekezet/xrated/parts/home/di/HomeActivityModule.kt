@@ -16,7 +16,6 @@ import com.ekezet.xrated.parts.home.parts.baseAmountEditor.di.BaseAmountEditorMo
 import com.ekezet.xrated.parts.home.parts.bottomMenu.di.BottomMenuModule
 import com.ekezet.xrated.parts.home.parts.progressIndicator.di.ProgressIndicatorModule
 import com.ekezet.xrated.parts.home.views.HomeActivity
-import com.ekezet.xrated.prefs.parts.prefsScreen.di.PrefsScreenModule
 import dagger.Binds
 import dagger.Module
 import dagger.Provides

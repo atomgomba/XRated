@@ -45,7 +45,7 @@ class PrefsManager @Inject constructor(@Named(APP) context: Context) : Coroutine
             publishChange(PREF_FAVORITES)
         }
 
-    var numFormatLocaleString: String
+    var numFormatLocaleCode: String
         get() = prefs.getString(PREF_NUM_FORMAT_LOCALE, "")!!
         set(value) {
             prefs.edit { putString(PREF_NUM_FORMAT_LOCALE, value) }

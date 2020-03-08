@@ -1,4 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="prefs__activity_title">Preferences</string>
+
+    <!--
+    Localization
+    -->
+
+    <string name="prefs__category__localization">Localization</string>
+
+    <string name="prefs__pref__number_format_locale_key">numberFormatLocale</string>
+    <string name="prefs__pref__number_format_locale_title">Locale for number formatting</string>
+    <string name="prefs__pref__number_format_locale_default">Default (%s)</string>
 </resources>

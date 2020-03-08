@@ -3,6 +3,8 @@ plugins {
     kotlin("android")
     kotlin("android.extensions")
     kotlin("kapt")
+    id("kotlin-android")
+    id("kotlin-android-extensions")
 }
 
 android {
@@ -44,6 +46,7 @@ dependencies {
 
     implementation(Deps.Androidx.coreKtx)
     implementation(Deps.Androidx.appcompat)
+    api(Deps.Androidx.preference)
     implementation(Deps.Androidx.constraintLayout)
     implementation(Deps.Androidx.recyclerView)
     implementation(Deps.Androidx.Lifecycle.common)
@@ -52,6 +55,7 @@ dependencies {
     implementation(Deps.material)
 
     implementation(Deps.Dagger.dagger)
+    implementation("androidx.preference:preference:1.1.0")
     kapt(Deps.Dagger.compiler)
     implementation(Deps.Dagger.androidSupport)
     kapt(Deps.Dagger.androidProcessor)
