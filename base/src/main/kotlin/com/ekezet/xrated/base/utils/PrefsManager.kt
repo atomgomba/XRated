@@ -45,16 +45,16 @@ class PrefsManager @Inject constructor(@Named(APP) context: Context) : Coroutine
             publishChange(PREF_FAVORITES)
         }
 
-    var numFormatLocaleCode: String
-        get() = prefs.getString(PREF_NUM_FORMAT_LOCALE, "")!!
+    var numFormatLanguageCode: String
+        get() = prefs.getString(PREF_NUM_FORMAT_LANGUAGE, "")!!
         set(value) {
-            prefs.edit { putString(PREF_NUM_FORMAT_LOCALE, value) }
+            prefs.edit { putString(PREF_NUM_FORMAT_LANGUAGE, value) }
             numFormatLocale = if (value.isEmpty()) {
                 Locale.getDefault()
             } else {
                 Locale(value)
             }
-            publishChange(PREF_NUM_FORMAT_LOCALE)
+            publishChange(PREF_NUM_FORMAT_LANGUAGE)
         }
 
     var numFormatLocale: Locale = Locale.getDefault()
@@ -70,6 +70,6 @@ class PrefsManager @Inject constructor(@Named(APP) context: Context) : Coroutine
         const val PREF_BASE_CURRENCY = "baseCurrency"
         const val PREF_BASE_AMOUNT = "baseAmount"
         const val PREF_FAVORITES = "favorites"
-        const val PREF_NUM_FORMAT_LOCALE = "numberFormatLocale"
+        const val PREF_NUM_FORMAT_LANGUAGE = "numberFormatLocale"
     }
 }

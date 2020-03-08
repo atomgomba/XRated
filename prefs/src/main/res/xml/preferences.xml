@@ -2,9 +2,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <PreferenceCategory app:title="@string/prefs__category__localization">
-        <ListPreference
-            app:key="@string/prefs__pref__number_format_locale_key"
-            app:title="@string/prefs__pref__number_format_locale_title"
+        <Preference
+            app:key="@string/prefs__pref__number_format_key"
+            app:title="@string/prefs__pref__number_format_title"
+            app:persistent="false"
             />
     </PreferenceCategory>
 

@@ -2,10 +2,9 @@ package com.ekezet.xrated.prefs.parts.prefsScreen
 
 import androidx.lifecycle.LifecycleOwner
 import com.ekezet.xrated.base.BaseInteractor
-import com.ekezet.xrated.base.di.ActivityScope
 import com.ekezet.xrated.base.di.FragmentScope
 import com.ekezet.xrated.base.utils.PrefsManager
-import com.ekezet.xrated.base.utils.PrefsManager.Companion.PREF_NUM_FORMAT_LOCALE
+import com.ekezet.xrated.base.utils.PrefsManager.Companion.PREF_NUM_FORMAT_LANGUAGE
 import com.ekezet.xrated.prefs.parts.prefsScreen.PrefsScreenSpec.Interactor
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.consumeEach
@@ -25,7 +24,7 @@ class PrefsScreenInteractor @Inject constructor(
         super.onCreate(owner)
         launch {
             prefsManager.changesChannel.consumeEach {
-                if (it == PREF_NUM_FORMAT_LOCALE) {
+                if (it == PREF_NUM_FORMAT_LANGUAGE) {
                     presenter.onNumberFormatChanged()
                 }
             }

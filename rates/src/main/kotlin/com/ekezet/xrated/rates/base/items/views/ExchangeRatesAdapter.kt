@@ -3,9 +3,9 @@ package com.ekezet.xrated.rates.base.items.views
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.ekezet.xrated.base.views.VH
 import com.ekezet.xrated.rates.base.items.ExchangeRateListItemSpec.View
 import com.ekezet.xrated.rates.base.items.viewmodels.ExchangeRateListItem
-import com.ekezet.xrated.rates.base.items.views.ExchangeRatesAdapter.VH
 
 /**
  * @author kiri
@@ -48,8 +48,6 @@ open class ExchangeRatesAdapter constructor(
         rates.addAll(newItems)
         results.dispatchUpdatesTo(this)
     }
-
-    class VH(itemView: ExchangeRateItemView) : RecyclerView.ViewHolder(itemView)
 
     class DiffCallback(
         private val oldItems: List<ExchangeRateListItem>,
