@@ -15,6 +15,7 @@ object Versions {
     const val coreKtx = "1.2.0"
     const val constraintLayout = "2.0.0-beta4"
     const val lifecycle = "2.2.0"
+    const val archCore = "2.1.0"
     const val lifecycleKtx = "2.2.0-alpha01"
 
     const val material = "1.1.0"

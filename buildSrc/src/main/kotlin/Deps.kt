@@ -49,7 +49,7 @@ object Deps {
             const val engine = "org.junit.jupiter:junit-jupiter-engine:${Versions.junit}"
             const val params = "org.junit.jupiter:junit-jupiter-params:${Versions.junit}"
         }
-        const val lifecycle = "androidx.arch.core:core-testing:${Versions.lifecycle}"
+        const val lifecycle = "androidx.arch.core:core-testing:${Versions.archCore}"
         const val mockk = "io.mockk:mockk:${Versions.mockk}"
         const val coroutineTest = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.kotlinCoroutines}"
     }
