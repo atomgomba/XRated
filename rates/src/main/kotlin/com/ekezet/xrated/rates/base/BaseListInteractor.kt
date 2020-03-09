@@ -37,10 +37,10 @@ abstract class BaseListInteractor<V : View, IP : Interactor.Presenter<V>> constr
         }
         launch(Dispatchers.Main) {
             prefsManager.changesChannel.consumeEach {
-                if (it == PREF_BASE_CURRENCY) {
-                    presenter.onBaseCurrencyChanged()
-                } else if (it in listOf(PREF_BASE_AMOUNT, PREF_NUM_FORMAT_LANGUAGE)) {
-                    refreshExchangeRates()
+                when (it) {
+                    PREF_BASE_CURRENCY -> presenter.onBaseCurrencyChanged()
+                    PREF_BASE_AMOUNT -> refreshExchangeRates()
+                    PREF_NUM_FORMAT_LANGUAGE -> presenter.onNumberFormatChanged()
                 }
             }
         }

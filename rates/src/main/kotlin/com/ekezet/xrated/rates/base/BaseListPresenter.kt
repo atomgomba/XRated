@@ -48,6 +48,10 @@ open class BaseListPresenter<V : View, IP : Interactor.Presenter<V>, I : Interac
         interactor!!.updateDailyRates()
     }
 
+    override fun onNumberFormatChanged() {
+        view.forceRefreshList()
+    }
+
     override fun onSwipeRefresh() {
         interactor!!.updateDailyRates()
     }

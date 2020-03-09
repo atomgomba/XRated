@@ -12,9 +12,7 @@ import com.ekezet.xrated.rates.base.BaseListSpec.View
 import com.ekezet.xrated.rates.base.items.viewmodels.ExchangeRateListItem
 import com.ekezet.xrated.rates.base.items.views.ExchangeRatesAdapter
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.view_rates_list.view.emptyText
-import kotlinx.android.synthetic.main.view_rates_list.view.recyclerView
-import kotlinx.android.synthetic.main.view_rates_list.view.swipeRefresh
+import kotlinx.android.synthetic.main.view_rates_list.view.*
 
 /**
  * @author kiri
@@ -62,5 +60,9 @@ open class BaseListView constructor(
 
     override fun hideLoading() {
         swipeRefresh.isRefreshing = false
+    }
+
+    override fun forceRefreshList() {
+        adapter.notifyDataSetChanged()
     }
 }
