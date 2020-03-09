@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.ekezet.xrated.prefs"
+    >
+
+    <application
+        android:theme="@style/BaseTheme"
+        >
+        <activity
+            android:name=".parts.prefsScreen.views.PreferencesActivity"
+            android:label="@string/prefs__activity_title"
+            />
+    </application>
+
+</manifest>

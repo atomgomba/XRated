@@ -18,6 +18,7 @@ interface BaseListSpec {
         fun showItems(items: List<ExchangeRateListItem>)
         fun hideLoading()
         fun copyToClipboard(label: CharSequence, text: CharSequence)
+        fun forceRefreshList()
 
         interface Presenter<V : View> : IPresenter<V> {
             fun onSwipeRefresh()
@@ -34,6 +35,7 @@ interface BaseListSpec {
             fun onLoadingFinished(rates: List<ExchangeRateListItem>)
             fun onLoadingError()
             fun onBaseCurrencyChanged()
+            fun onNumberFormatChanged()
         }
     }
 }

@@ -4,6 +4,7 @@ import androidx.annotation.IdRes
 import com.ekezet.xrated.base.arch.AnyPart
 import com.ekezet.xrated.base.arch.IInteractor
 import com.ekezet.xrated.base.arch.IPresenter
+import com.ekezet.xrated.base.arch.IRouter
 import com.ekezet.xrated.base.arch.IView
 import com.ekezet.xrated.base.arch.Part
 import com.ekezet.xrated.parts.home.HomeSpec.Interactor
@@ -30,6 +31,7 @@ interface HomeSpec {
         interface Presenter : IPresenter<View> {
             fun onPrepareOptionsMenu()
             fun onBaseCurrencyClicked()
+            fun onPreferencesClicked()
             fun onUserScrolledToPage(index: Int)
         }
     }
@@ -44,6 +46,10 @@ interface HomeSpec {
             fun onBaseAmountChanged()
             fun onNavigationItemSelected(@IdRes menuId: Int)
         }
+    }
+
+    interface Router : IRouter {
+        fun startPreferencesActivity()
     }
 }
 

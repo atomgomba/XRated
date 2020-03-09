@@ -7,6 +7,7 @@ import com.ekezet.xrated.base.BasePresenter
 import com.ekezet.xrated.base.di.ActivityScope
 import com.ekezet.xrated.di.MENU
 import com.ekezet.xrated.parts.home.HomeSpec.Interactor
+import com.ekezet.xrated.parts.home.HomeSpec.Router
 import com.ekezet.xrated.parts.home.HomeSpec.View
 import com.ekezet.xrated.parts.home.parts.baseAmountEditor.BaseAmountEditorPart
 import com.ekezet.xrated.parts.home.parts.bottomMenu.BottomMenuPart
@@ -26,7 +27,7 @@ class HomePresenter @Inject constructor(
     @Named(MENU) private val menuItems: List<NavigationItem>,
     private val bottomMenuView: BottomMenuSpec.View,
     private val progressIndicator: ProgressIndicatorPart
-) : BasePresenter<View, Interactor, Nothing>(),
+) : BasePresenter<View, Interactor, Router>(),
     View.Presenter, Interactor.Presenter {
     private val pageIndexMap: MutableMap<Int, Int> = HashMap()
     private val pageIdMap: MutableMap<Int, Int> = HashMap()
@@ -64,6 +65,10 @@ class HomePresenter @Inject constructor(
     override fun onBaseCurrencyClicked() {
         view.showMessage(t(R.string.home__toolbar__select_base_currency_hint))
         leaveInfoPage()
+    }
+
+    override fun onPreferencesClicked() {
+        router!!.startPreferencesActivity()
     }
 
     override fun onBaseAmountChanged() {

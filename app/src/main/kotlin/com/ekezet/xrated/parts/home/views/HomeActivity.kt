@@ -29,7 +29,7 @@ class HomeActivity : BaseActivity<HomePart, View, View.Presenter>(), View {
     private lateinit var baseCurrencyMenuItem: MenuItem
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        setTheme(R.style.AppTheme)
+        setTheme(R.style.BaseTheme_NoActionBar)
         super.onCreate(savedInstanceState)
     }
 
@@ -87,6 +87,10 @@ class HomeActivity : BaseActivity<HomePart, View, View.Presenter>(), View {
         return when (item.itemId) {
             R.id.menuBaseCurrency -> {
                 presenter.onBaseCurrencyClicked()
+                true
+            }
+            R.id.menuPreferences -> {
+                presenter.onPreferencesClicked()
                 true
             }
             else -> super.onOptionsItemSelected(item)

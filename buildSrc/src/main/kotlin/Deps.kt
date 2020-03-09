@@ -2,6 +2,7 @@ object Deps {
     object Androidx {
         const val coreKtx = "androidx.core:core-ktx:${Versions.coreKtx}"
         const val appcompat = "androidx.appcompat:appcompat:${Versions.androidx}"
+        const val preference = "androidx.preference:preference-ktx:${Versions.androidx}"
         const val recyclerView = "androidx.recyclerview:recyclerview:${Versions.androidx}"
         const val viewPager2 = "androidx.viewpager2:viewpager2:${Versions.viewPager2}"
         const val swipeRefresh = "androidx.swiperefreshlayout:swiperefreshlayout:${Versions.swipeRefresh}"
