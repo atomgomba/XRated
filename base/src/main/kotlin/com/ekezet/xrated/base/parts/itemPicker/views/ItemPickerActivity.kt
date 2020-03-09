@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.view.MenuItem
 import android.view.inputmethod.EditorInfo.IME_ACTION_SEARCH
+import androidx.core.widget.doAfterTextChanged
 import com.ekezet.xrated.base.R
 import com.ekezet.xrated.base.parts.itemPicker.ItemPickerPart
 import com.ekezet.xrated.base.parts.itemPicker.ItemPickerSpec.View
@@ -40,10 +41,17 @@ class ItemPickerActivity : BaseActivity<ItemPickerPart, View, View.Presenter>(),
             }
             return@setOnEditorActionListener false
         }
+        searchText.doAfterTextChanged {
+            presenter.onSearchInitiated(it.toString())
+        }
     }
 
     override fun setPickableItems(items: List<Pickable>) {
         adapter.setItems(items)
+    }
+
+    override fun showFiltered(query: CharSequence) {
+        adapter.filter.filter(query)
     }
 
     override fun finishWithResult(item: Pickable?) {

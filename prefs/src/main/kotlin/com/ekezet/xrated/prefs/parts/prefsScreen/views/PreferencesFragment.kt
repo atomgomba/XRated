@@ -8,7 +8,6 @@ import androidx.preference.Preference.SummaryProvider
 import com.ekezet.xrated.base.parts.itemPicker.views.ItemPickerActivity.Companion.EXTRA_RESULT
 import com.ekezet.xrated.base.views.BasePreferenceFragment
 import com.ekezet.xrated.prefs.R
-import com.ekezet.xrated.prefs.R.string
 import com.ekezet.xrated.prefs.R.xml
 import com.ekezet.xrated.prefs.parts.prefsScreen.PrefsScreenPart
 import com.ekezet.xrated.prefs.parts.prefsScreen.PrefsScreenSpec.Companion.REQUEST_CODE_LANGUAGE_PICKER

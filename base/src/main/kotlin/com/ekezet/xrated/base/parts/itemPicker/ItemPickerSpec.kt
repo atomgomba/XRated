@@ -1,7 +1,6 @@
 package com.ekezet.xrated.base.parts.itemPicker
 
 import com.ekezet.xrated.base.arch.IPresenter
-import com.ekezet.xrated.base.arch.IRouter
 import com.ekezet.xrated.base.arch.IView
 import com.ekezet.xrated.base.arch.Part
 import com.ekezet.xrated.base.parts.itemPicker.ItemPickerSpec.View
@@ -14,6 +13,7 @@ interface ItemPickerSpec {
         val items: ArrayList<Pickable>
         var inputText: String
 
+        fun showFiltered(query: CharSequence)
         fun finishWithResult(item: Pickable?)
         fun setPickableItems(items: List<Pickable>)
 
@@ -22,8 +22,6 @@ interface ItemPickerSpec {
             fun onItemPicked(item: Pickable)
         }
     }
-
-    interface Router : IRouter
 }
 
 typealias ItemPickerPart = Part<View, View.Presenter, Nothing>
