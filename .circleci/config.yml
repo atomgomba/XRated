@@ -86,10 +86,15 @@ jobs:
           command: ./gradlew testDebugUnitTest
 
 
+dev-versions-only: &dev-versions-only
+  filters:
+    branches:
+      only: dev
+
 release-versions-only: &release-versions-only
   filters:
     tags:
-      only: /^v[0-9]+\.[0-9]+\.[0-9]+/
+      only: /^v[0-9]+\.[0-9]+\.[0-9]+(\-[a-z]+)?/
     branches:
       only: master
 
@@ -99,8 +104,10 @@ workflows:
 
   test-and-build:
     jobs:
-      - test-units
-      - build-debug-apk
+      - test-units:
+          <<: *dev-versions-only
+      - build-debug-apk:
+          <<: *dev-versions-only
 
   deploy:
     jobs:
