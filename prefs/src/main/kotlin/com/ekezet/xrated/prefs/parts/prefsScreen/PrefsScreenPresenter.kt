@@ -4,9 +4,11 @@ import com.ekezet.xrated.base.BasePresenter
 import com.ekezet.xrated.base.di.FragmentScope
 import com.ekezet.xrated.base.utils.PrefsManager
 import com.ekezet.xrated.prefs.R
-import com.ekezet.xrated.prefs.parts.prefsScreen.PrefsScreenSpec.*
+import com.ekezet.xrated.prefs.parts.prefsScreen.PrefsScreenSpec.Interactor
+import com.ekezet.xrated.prefs.parts.prefsScreen.PrefsScreenSpec.Router
+import com.ekezet.xrated.prefs.parts.prefsScreen.PrefsScreenSpec.View
 import com.ekezet.xrated.prefs.parts.prefsScreen.data.Language
-import java.util.*
+import java.util.Locale
 import javax.inject.Inject
 
 /**

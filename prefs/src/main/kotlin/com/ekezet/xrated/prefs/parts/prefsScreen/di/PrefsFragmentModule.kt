@@ -2,7 +2,6 @@ package com.ekezet.xrated.prefs.parts.prefsScreen.di
 
 import android.content.Context
 import com.ekezet.xrated.base.di.FragmentScope
-import com.ekezet.xrated.base.parts.itemPicker.di.ItemPickerModule
 import com.ekezet.xrated.base.views.Interrogator
 import com.ekezet.xrated.prefs.parts.prefsScreen.PrefsScreenInteractor
 import com.ekezet.xrated.prefs.parts.prefsScreen.PrefsScreenPart
