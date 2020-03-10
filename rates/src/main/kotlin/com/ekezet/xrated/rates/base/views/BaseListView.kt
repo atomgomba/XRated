@@ -27,8 +27,8 @@ open class BaseListView constructor(
 
     override fun setup(idRes: Int) {
         super.setup(idRes)
+        adapter.setHasStableIds(true)
         recyclerView.setHasFixedSize(true)
-        recyclerView.itemAnimator = null
         recyclerView.adapter = adapter
         swipeRefresh.setOnRefreshListener {
             presenter.onSwipeRefresh()
