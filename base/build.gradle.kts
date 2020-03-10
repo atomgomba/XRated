@@ -42,10 +42,13 @@ dependencies {
 
     implementation(Deps.Androidx.coreKtx)
     implementation(Deps.Androidx.appcompat)
+    api(Deps.Androidx.preference)
     implementation(Deps.Androidx.constraintLayout)
     implementation(Deps.Androidx.Lifecycle.common)
     implementation(Deps.Androidx.Lifecycle.extensions)
     implementation(Deps.Androidx.Lifecycle.runtimeKtx)
+
+    implementation(Deps.material)
 
     implementation(Deps.Dagger.dagger)
     kapt(Deps.Dagger.compiler)

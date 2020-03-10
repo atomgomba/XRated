@@ -2,6 +2,7 @@ object Deps {
     object Androidx {
         const val coreKtx = "androidx.core:core-ktx:${Versions.coreKtx}"
         const val appcompat = "androidx.appcompat:appcompat:${Versions.androidx}"
+        const val preference = "androidx.preference:preference-ktx:${Versions.androidx}"
         const val recyclerView = "androidx.recyclerview:recyclerview:${Versions.androidx}"
         const val viewPager2 = "androidx.viewpager2:viewpager2:${Versions.viewPager2}"
         const val swipeRefresh = "androidx.swiperefreshlayout:swiperefreshlayout:${Versions.swipeRefresh}"
@@ -49,7 +50,7 @@ object Deps {
             const val engine = "org.junit.jupiter:junit-jupiter-engine:${Versions.junit}"
             const val params = "org.junit.jupiter:junit-jupiter-params:${Versions.junit}"
         }
-        const val lifecycle = "androidx.arch.core:core-testing:${Versions.lifecycle}"
+        const val lifecycle = "androidx.arch.core:core-testing:${Versions.archCore}"
         const val mockk = "io.mockk:mockk:${Versions.mockk}"
         const val coroutineTest = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.kotlinCoroutines}"
     }

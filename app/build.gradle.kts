@@ -11,7 +11,7 @@ plugins {
 }
 
 val versionMajor = 0
-val versionMinor = 1
+val versionMinor = 2
 val versionPatch = 0
 
 android {
@@ -121,6 +121,7 @@ dependencies {
 
     implementation(project(":base"))
     implementation(project(":rates"))
+    implementation(project(":prefs"))
 
     testImplementation(Deps.Test.JUnit.api)
     testRuntimeOnly(Deps.Test.JUnit.engine)

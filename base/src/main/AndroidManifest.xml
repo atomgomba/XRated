@@ -1,4 +1,13 @@
-<manifest package="com.ekezet.xrated.base">
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.ekezet.xrated.base"
+    >
 
-    /
+    <application>
+        <activity
+            android:name=".parts.itemPicker.views.ItemPickerActivity"
+            android:label="@string/item_picker__activity_title"
+            android:theme="@style/BaseTheme"
+            />
+    </application>
 </manifest>

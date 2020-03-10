@@ -4,6 +4,9 @@ import androidx.lifecycle.LifecycleOwner
 import com.ekezet.xrated.base.BaseInteractor
 import com.ekezet.xrated.base.di.ActivityScope
 import com.ekezet.xrated.base.utils.PrefsManager
+import com.ekezet.xrated.base.utils.PrefsManager.Companion.PREF_BASE_AMOUNT
+import com.ekezet.xrated.base.utils.PrefsManager.Companion.PREF_BASE_CURRENCY
+import com.ekezet.xrated.base.utils.PrefsManager.Companion.PREF_NUM_FORMAT_LANGUAGE
 import com.ekezet.xrated.parts.home.parts.baseAmountEditor.BaseAmountEditorSpec.Interactor
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.consumeEach
@@ -25,9 +28,9 @@ class BaseAmountEditorInteractor @Inject constructor(
             presenter.onBaseAmountLoaded(prefsManager.baseAmount)
             presenter.onBaseCurrencyChanged(prefsManager.baseCurrency)
             prefsManager.changesChannel.consumeEach {
-                if (it == PrefsManager.PREF_BASE_AMOUNT) {
+                if (it in listOf(PREF_BASE_AMOUNT, PREF_NUM_FORMAT_LANGUAGE)) {
                     presenter.onBaseAmountLoaded(prefsManager.baseAmount)
-                } else if (it == PrefsManager.PREF_BASE_CURRENCY) {
+                } else if (it == PREF_BASE_CURRENCY) {
                     presenter.onBaseCurrencyChanged(prefsManager.baseCurrency)
                 }
             }

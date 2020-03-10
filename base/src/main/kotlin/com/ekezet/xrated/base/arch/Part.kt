@@ -1,7 +1,10 @@
 package com.ekezet.xrated.base.arch
 
 import android.content.Context
+import android.os.Bundle
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 
@@ -34,5 +37,30 @@ open class Part<V : IView, VP : IPresenter<V>, IP : IPresenter<V>>(
     fun bootWithContainer(container: ViewGroup, lifecycle: Lifecycle? = null) {
         container.addView(view as android.view.View)
         boot(lifecycle)
+    }
+
+    fun bootWithFragment(
+        context: Context,
+        fragmentManager: FragmentManager,
+        tag: String? = null,
+        args: Bundle? = null
+    ) {
+        if (tag != null && fragmentManager.findFragmentByTag(tag)?.isVisible == true) {
+            // do not add same Fragment twice
+            return
+        }
+        val fragment = view as Fragment
+        if (args != null) {
+            fragment.arguments = args
+        }
+        val fragmentTag = if (view is IFragmentView && tag == null) {
+            (view as IFragmentView).fragmentTag
+        } else {
+            tag
+        }
+        fragmentManager.beginTransaction()
+            .add(fragment, fragmentTag)
+            .commit()
+        boot(fragment.lifecycle, context)
     }
 }

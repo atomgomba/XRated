@@ -1,5 +1,6 @@
 package com.ekezet.xrated.rates.base.items.views
 
+import android.animation.AnimatorInflater
 import android.annotation.SuppressLint
 import android.content.Context
 import android.view.ViewGroup.LayoutParams.MATCH_PARENT
@@ -13,6 +14,9 @@ import kotlinx.android.synthetic.main.list_item_exchange_rate.view.*
  * @author kiri
  */
 class ExchangeRateItemView(context: Context) : ConstraintLayout(context), View {
+    private val animDuration = context.resources.getInteger(R.integer.favorite_button_anim_duration)
+    private val favStateAnimator = AnimatorInflater.loadStateListAnimator(context, R.animator.favorite_button_state)
+
     init {
         inflate(context, R.layout.list_item_exchange_rate, this)
         layoutParams = LayoutParams(MATCH_PARENT, WRAP_CONTENT)
@@ -54,7 +58,14 @@ class ExchangeRateItemView(context: Context) : ConstraintLayout(context), View {
     }
 
     fun setOnFavoriteButtonClickListener(listener: (android.view.View) -> Unit) {
-        favoriteButton.setOnClickListener(listener)
+        favoriteButton.setOnClickListener { v ->
+            favoriteButton.stateListAnimator = favStateAnimator
+            isFavorite = !isFavorite
+            postDelayed({
+                favoriteButton.stateListAnimator = null
+                listener(v)
+            }, animDuration * 2L)
+        }
     }
 
     fun setOnCopyButtonClickListener(listener: (android.view.View) -> Unit) {

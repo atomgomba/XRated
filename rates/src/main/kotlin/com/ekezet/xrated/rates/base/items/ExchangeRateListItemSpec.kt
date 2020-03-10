@@ -10,7 +10,6 @@ interface ExchangeRateListItemSpec {
         var currencyCode: CharSequence
         var value: CharSequence
         var flag: String
-        // TODO: try a statedrawable here
         var isFavorite: Boolean
         fun setContentDescriptions(copyDesc: CharSequence, favoriteDesc: CharSequence)
 

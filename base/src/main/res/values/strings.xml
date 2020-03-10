@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="item_picker__activity_title">Pick an item</string>
+    <string name="item_picker__search_hint">Type to search</string>
+</resources>

@@ -4,7 +4,6 @@ import androidx.lifecycle.LifecycleOwner
 import com.ekezet.xrated.base.di.ActivityScope
 import com.ekezet.xrated.rates.R
 import com.ekezet.xrated.rates.base.BaseListPresenter
-import com.ekezet.xrated.rates.base.items.viewmodels.ExchangeRateListItem
 import com.ekezet.xrated.rates.parts.favoritesList.FavoritesListSpec.Interactor
 import com.ekezet.xrated.rates.parts.favoritesList.FavoritesListSpec.View
 import javax.inject.Inject

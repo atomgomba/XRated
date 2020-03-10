@@ -6,23 +6,24 @@ object Versions {
     const val minSdk = 24
     const val targetSdk = 29
 
-    const val kotlin = "1.3.61"
-    const val kotlinCoroutines = "1.3.3"
+    const val kotlin = "1.3.70"
+    const val kotlinCoroutines = "1.3.4"
 
     const val androidx = "1.1.0"
     const val viewPager2 = "1.0.0"
     const val swipeRefresh = "1.0.0"
     const val coreKtx = "1.2.0"
-    const val constraintLayout = "2.0.0-beta3"
-    const val lifecycle = "2.1.0"
+    const val constraintLayout = "2.0.0-beta4"
+    const val lifecycle = "2.2.0"
+    const val archCore = "2.1.0"
     const val lifecycleKtx = "2.2.0-alpha01"
 
     const val material = "1.1.0"
 
-    const val dagger = "2.24"
-    const val okhttp = "4.3.1"
-    const val retrofit = "2.7.1"
-    const val jodaTime = "2.10.2"
+    const val dagger = "2.26"
+    const val okhttp = "4.4.0"
+    const val retrofit = "2.7.2"
+    const val jodaTime = "2.10.5"
     const val moshi = "1.9.2"
     const val timber = "4.7.1"
 

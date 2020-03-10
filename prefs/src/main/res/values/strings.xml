@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="prefs__activity_title">Preferences</string>
+
+    <!--
+    Localization
+    -->
+
+    <string name="prefs__category__localization">Localization</string>
+
+    <string name="prefs__pref__number_format_key">numberFormatLocale</string>
+    <string name="prefs__pref__number_format_title">Number formatting</string>
+    <string name="prefs__pref__number_format_default">Default (%s)</string>
+    <string name="prefs__pref__number_format__picker_title">Pick a language</string>
+</resources>

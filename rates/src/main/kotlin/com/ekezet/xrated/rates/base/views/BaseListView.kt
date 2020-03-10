@@ -6,16 +6,13 @@ import android.content.ClipboardManager
 import android.content.Context
 import android.content.Context.CLIPBOARD_SERVICE
 import androidx.core.view.isInvisible
-import androidx.lifecycle.LifecycleOwner
 import com.ekezet.xrated.base.views.BaseView
 import com.ekezet.xrated.rates.R
 import com.ekezet.xrated.rates.base.BaseListSpec.View
 import com.ekezet.xrated.rates.base.items.viewmodels.ExchangeRateListItem
 import com.ekezet.xrated.rates.base.items.views.ExchangeRatesAdapter
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.view_rates_list.view.emptyText
-import kotlinx.android.synthetic.main.view_rates_list.view.recyclerView
-import kotlinx.android.synthetic.main.view_rates_list.view.swipeRefresh
+import kotlinx.android.synthetic.main.view_rates_list.view.*
 
 /**
  * @author kiri
@@ -30,8 +27,8 @@ open class BaseListView constructor(
 
     override fun setup(idRes: Int) {
         super.setup(idRes)
+        adapter.setHasStableIds(true)
         recyclerView.setHasFixedSize(true)
-        recyclerView.itemAnimator = null
         recyclerView.adapter = adapter
         swipeRefresh.setOnRefreshListener {
             presenter.onSwipeRefresh()
@@ -63,5 +60,9 @@ open class BaseListView constructor(
 
     override fun hideLoading() {
         swipeRefresh.isRefreshing = false
+    }
+
+    override fun forceRefreshList() {
+        adapter.notifyDataSetChanged()
     }
 }

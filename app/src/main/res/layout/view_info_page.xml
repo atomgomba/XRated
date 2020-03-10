@@ -25,6 +25,7 @@
         android:layout_marginTop="16dp"
         android:text="@string/home__info__published_at"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+        android:textFontWeight="500"
         app:layout_constraintStart_toStartOf="@+id/dataHeaderText"
         app:layout_constraintTop_toBottomOf="@+id/dataHeaderText"
         />
@@ -48,6 +49,7 @@
         android:layout_marginTop="8dp"
         android:text="@string/home__info__downloaded_at"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+        android:textFontWeight="500"
         app:layout_constraintStart_toStartOf="@+id/textView"
         app:layout_constraintTop_toBottomOf="@+id/textView"
         />
@@ -107,6 +109,7 @@
         android:layout_marginTop="16dp"
         android:text="@string/home__info__version"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+        android:textFontWeight="500"
         app:layout_constraintStart_toStartOf="@+id/appInfoHeaderText"
         app:layout_constraintTop_toBottomOf="@+id/appInfoHeaderText"
         />
@@ -129,6 +132,7 @@
         android:layout_marginTop="8dp"
         android:text="@string/home__info__build_id"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+        android:textFontWeight="500"
         app:layout_constraintStart_toStartOf="@+id/textView6"
         app:layout_constraintTop_toBottomOf="@+id/textView6"
         />
@@ -140,7 +144,7 @@
         android:gravity="end"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView8"
+        app:layout_constraintTop_toBottomOf="@+id/textView8"
         tools:text="@string/build_id"
         />
 

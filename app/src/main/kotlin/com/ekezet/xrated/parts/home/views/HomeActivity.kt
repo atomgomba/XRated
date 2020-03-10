@@ -29,13 +29,14 @@ class HomeActivity : BaseActivity<HomePart, View, View.Presenter>(), View {
     private lateinit var baseCurrencyMenuItem: MenuItem
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        setTheme(R.style.AppTheme)
+        setTheme(R.style.BaseTheme_NoActionBar)
         super.onCreate(savedInstanceState)
-        setTitle(R.string.home__activity_title)
     }
 
     override fun setup(idRes: Int) {
         super.setup(idRes)
+        setSupportActionBar(toolbar)
+        supportActionBar!!.setTitle(R.string.home__activity_title)
         viewPager.adapter = menuPagerAdapter
         viewPager.registerOnPageChangeCallback(MyOnPageChangeCallback())
     }
@@ -65,6 +66,10 @@ class HomeActivity : BaseActivity<HomePart, View, View.Presenter>(), View {
         Snackbar.make(viewPager, text, Snackbar.LENGTH_LONG).show()
     }
 
+    override fun expandToolbar() {
+        appBarLayout.setExpanded(true)
+    }
+
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         super.onCreateOptionsMenu(menu)
         menuInflater.inflate(R.menu.menu_options, menu)
@@ -82,6 +87,10 @@ class HomeActivity : BaseActivity<HomePart, View, View.Presenter>(), View {
         return when (item.itemId) {
             R.id.menuBaseCurrency -> {
                 presenter.onBaseCurrencyClicked()
+                true
+            }
+            R.id.menuPreferences -> {
+                presenter.onPreferencesClicked()
                 true
             }
             else -> super.onOptionsItemSelected(item)

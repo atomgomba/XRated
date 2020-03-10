@@ -36,6 +36,8 @@ open class BasePresenter<V : IView, I : IInteractor<*>, R : IRouter> :
         this.router = part.router as? R
     }
 
-    protected fun t(@StringRes resId: Int, vararg params: Any): CharSequence =
-        view.getAndroidContext().getString(resId, params)
+    protected fun t(@StringRes resId: Int, vararg params: Any): CharSequence = if (params.isEmpty())
+        view.getAndroidContext().getString(resId)
+    else
+        view.getAndroidContext().getString(resId, *params)
 }
