@@ -13,7 +13,17 @@ To get the latest stable version check out [XRated on Google Play](https://play.
 
 ### 0.2.0
 
-* TODO
+#### New features
+
+* Preferences screen and selectable number formatting
+* Use custom font (Inter UI)
+* Collapsible toolbar
+* State animation for favorite button
+* Other minor improvements
+
+#### Bug fixes
+
+* Fixed list item layout when numbers are too large
 
 ### 0.1.0
 
