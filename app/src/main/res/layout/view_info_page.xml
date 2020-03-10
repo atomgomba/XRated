@@ -144,7 +144,7 @@
         android:gravity="end"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView8"
+        app:layout_constraintTop_toBottomOf="@+id/textView8"
         tools:text="@string/build_id"
         />
 
