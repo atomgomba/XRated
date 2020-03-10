@@ -27,6 +27,7 @@ class PreferencesFragment() : BasePreferenceFragment<PrefsScreenPart, View, View
     }
 
     override fun updateNumberFormat(language: String) {
+        // hacky way for forcing the summary to update
         numberFormatPreference?.summaryProvider = numberFormatSummaryProvider
     }
 
