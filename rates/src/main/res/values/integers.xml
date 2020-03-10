@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <integer name="update_hour">16</integer>
-    <integer name="number_of_currencies">32</integer>
+    <integer name="number_of_currencies">33</integer>
+    <integer name="favorite_button_anim_duration">200</integer>
 </resources>

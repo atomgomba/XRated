@@ -38,12 +38,7 @@ open class ExchangeRatesAdapter constructor(
     }
 
     fun setItems(newItems: List<ExchangeRateListItem>) {
-        val results = DiffUtil.calculateDiff(
-            DiffCallback(
-                rates,
-                newItems
-            )
-        )
+        val results = DiffUtil.calculateDiff(DiffCallback(rates, newItems))
         rates.clear()
         rates.addAll(newItems)
         results.dispatchUpdatesTo(this)
@@ -53,10 +48,10 @@ open class ExchangeRatesAdapter constructor(
         private val oldItems: List<ExchangeRateListItem>,
         private val newItems: List<ExchangeRateListItem>
     ) : DiffUtil.Callback() {
-        override fun areContentsTheSame(oldIndex: Int, newIndex: Int) =
+        override fun areItemsTheSame(oldIndex: Int, newIndex: Int) =
             oldItems[oldIndex] == newItems[newIndex]
 
-        override fun areItemsTheSame(oldIndex: Int, newIndex: Int) =
+        override fun areContentsTheSame(oldIndex: Int, newIndex: Int) =
             oldItems[oldIndex] == newItems[newIndex]
 
         override fun getOldListSize() = oldItems.size
