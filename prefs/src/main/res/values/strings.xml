@@ -8,8 +8,12 @@
 
     <string name="prefs__category__localization">Localization</string>
 
+    <string name="prefs__pref__override_locale_key">overrideLocale</string>
+    <string name="prefs__pref__override_locale_title">Override default locale</string>
+    <string name="prefs__pref__override_locale_summary_on">Using custom locale</string>
+    <string name="prefs__pref__override_locale_summary_off">Using system default locale</string>
+
     <string name="prefs__pref__number_format_key">numberFormatLocale</string>
     <string name="prefs__pref__number_format_title">Number formatting</string>
-    <string name="prefs__pref__number_format_default">Default (%s)</string>
     <string name="prefs__pref__number_format__picker_title">Pick a language</string>
 </resources>

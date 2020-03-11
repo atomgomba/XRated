@@ -9,17 +9,20 @@ import com.ekezet.xrated.base.parts.itemPicker.Pickable
 import com.ekezet.xrated.base.views.Interrogator
 import com.ekezet.xrated.prefs.parts.prefsScreen.PrefsScreenSpec.Interactor
 import com.ekezet.xrated.prefs.parts.prefsScreen.PrefsScreenSpec.View
+import java.util.Locale
 
 /**
  * @author kiri
  */
 interface PrefsScreenSpec {
     interface View : IFragmentView, Interrogator {
-        fun updateNumberFormat(language: String)
+        fun updateNumberFormat()
+        fun updateOverrideLocale(currentLocale: Locale)
 
         interface Presenter : IFragmentPresenter<View> {
+            fun onOverrideLocaleChanged(enabled: Boolean)
             fun provideNumberFormatSummary(): CharSequence
-            fun onNumberFormatSelected(language: String)
+            fun onNumberFormatSelected(locale: Locale)
             fun onNumberFormatClicked()
         }
     }
@@ -31,10 +34,7 @@ interface PrefsScreenSpec {
     }
 
     interface Router : IRouter {
-        fun startItemPicker(
-            items: List<Pickable>,
-            title: CharSequence
-        )
+        fun startItemPicker(items: List<Pickable>, title: CharSequence, selected: Pickable?)
     }
 
     companion object {

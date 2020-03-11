@@ -6,7 +6,7 @@ import android.widget.Filterable
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.ekezet.xrated.base.di.ActivityScope
-import com.ekezet.xrated.base.parts.itemPicker.ItemPickerSpec.View
+import com.ekezet.xrated.base.parts.itemPicker.ItemPickerSpec.ItemView
 import com.ekezet.xrated.base.parts.itemPicker.Pickable
 import com.ekezet.xrated.base.views.VH
 import javax.inject.Inject
@@ -16,24 +16,24 @@ import javax.inject.Inject
  */
 @ActivityScope
 class ItemPickerAdapter @Inject constructor(
-    private val presenter: View.Presenter
+    private val presenter: ItemView.Presenter
 ) : RecyclerView.Adapter<VH>(), Filterable {
     private val items: MutableList<Pickable> = ArrayList()
     private val origItems: MutableList<Pickable> = ArrayList()
 
+    init {
+        setHasStableIds(true)
+    }
+
     private val searchFilter = object : Filter() {
-        override fun performFiltering(constraint: CharSequence) =
-            if (constraint.isBlank()) {
-                FilterResults().apply {
-                    values = origItems
-                }
-            } else {
-                FilterResults().apply {
-                    values = origItems.filter {
-                        it.pickerTitle.toString().split(" ").any { part ->
-                            part.startsWith(constraint, true)
-                        }
+        override fun performFiltering(constraint: CharSequence?) =
+            FilterResults().apply {
+                values = if (constraint?.isNotBlank() == true) {
+                    origItems.filter {
+                        it.pickerTitle.contains(constraint, true)
                     }
+                } else {
+                    origItems
                 }
             }
 
@@ -60,16 +60,17 @@ class ItemPickerAdapter @Inject constructor(
         VH(PickableItemView(parent.context))
 
     override fun onBindViewHolder(holder: VH, position: Int) {
-        val pickable = items[position]
-        (holder.itemView as PickableItemView).apply {
-            setOnClickListener { presenter.onItemPicked(pickable) }
-            item = pickable
-        }
+        presenter.onBindListItem(holder.itemView as ItemView, items[position])
     }
+
+    override fun getItemId(position: Int) = items[position].id
 
     override fun getItemCount() = items.size
 
     override fun getFilter(): Filter = searchFilter
+
+    private val Pickable.id: Long
+        get() = pickerTitle.toString().toCharArray().contentHashCode().toLong()
 
     private class DiffCallback(
         private val oldList: List<Pickable>,

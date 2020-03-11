@@ -62,8 +62,8 @@ dependencies {
 
     implementation(Deps.timber)
 
-    api(project(":base"))
-    api(project(":testing"))
+    implementation(project(":base"))
+    implementation(project(":testing"))
 
     testImplementation(Deps.Test.JUnit.api)
     testRuntimeOnly(Deps.Test.JUnit.engine)

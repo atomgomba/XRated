@@ -7,7 +7,7 @@ object Versions {
     const val targetSdk = 29
 
     const val kotlin = "1.3.70"
-    const val kotlinCoroutines = "1.3.4"
+    const val kotlinCoroutines = "1.3.5"
 
     const val androidx = "1.1.0"
     const val viewPager2 = "1.0.0"

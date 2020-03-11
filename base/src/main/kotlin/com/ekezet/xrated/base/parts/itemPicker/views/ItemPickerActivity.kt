@@ -19,14 +19,17 @@ import javax.inject.Inject
 class ItemPickerActivity : BaseActivity<ItemPickerPart, View, View.Presenter>(), View {
     @Inject internal lateinit var adapter: ItemPickerAdapter
 
+    override val items: ArrayList<Pickable>
+        get() = intent.getParcelableArrayListExtra(EXTRA_ITEMS)!!
+
+    override val selected: Pickable?
+        get() = intent.getParcelableExtra(EXTRA_SELECTED)
+
     override var inputText: String
         get() = searchText.text.toString().trim()
         set(value) {
             searchText.setText(value)
         }
-
-    override val items: ArrayList<Pickable>
-        get() = intent.getParcelableArrayListExtra(EXTRA_ITEMS)!!
 
     override fun setup(idRes: Int) {
         super.setup(idRes)
@@ -74,11 +77,18 @@ class ItemPickerActivity : BaseActivity<ItemPickerPart, View, View.Presenter>(),
 
         private val EXTRA_ITEMS = "${ItemPickerActivity::class.simpleName}.items"
         private val EXTRA_TITLE = "${ItemPickerActivity::class.simpleName}.title"
+        private val EXTRA_SELECTED = "${ItemPickerActivity::class.simpleName}.selected"
 
-        fun newIntent(context: Context, items: ArrayList<Pickable>, title: CharSequence? = null) =
+        fun newIntent(
+            context: Context,
+            items: ArrayList<Pickable>,
+            title: CharSequence? = null,
+            selected: Pickable? = null
+        ) =
             Intent(context, ItemPickerActivity::class.java).apply {
                 putParcelableArrayListExtra(EXTRA_ITEMS, items)
                 putExtra(EXTRA_TITLE, title)
+                putExtra(EXTRA_SELECTED, selected)
             }
     }
 }

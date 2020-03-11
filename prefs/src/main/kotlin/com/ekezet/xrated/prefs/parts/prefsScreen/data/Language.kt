@@ -9,18 +9,20 @@ import java.util.Locale
  */
 @Parcelize
 data class Language(
-    val isoCode2: String,
-    private val displayName: String
+    val locale: Locale,
+    override val pickerTitle: CharSequence
 ) : Pickable {
-    override val pickerTitle
-        get() = displayName
 
     companion object {
         fun list(): List<Language> =
             Locale.getAvailableLocales().asSequence()
-                .map { Language(it.language, it.displayLanguage) }
-                .distinctBy { it.displayName }
-                .sortedBy { it.displayName }
+                .map {
+                    if (it.displayCountry.isBlank()) {
+                        Language(it, it.displayLanguage)
+                    } else {
+                        Language(it, "%s (%s)".format(it.displayLanguage, it.displayCountry))
+                    }
+                }
                 .toList()
     }
 }

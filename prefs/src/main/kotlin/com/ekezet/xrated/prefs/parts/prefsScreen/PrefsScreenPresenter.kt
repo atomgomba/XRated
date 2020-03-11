@@ -21,28 +21,35 @@ class PrefsScreenPresenter @Inject constructor(
     private val languages = Language.list()
 
     override fun onViewCreated() {
-        onNumberFormatChanged()
+        view.updateNumberFormat()
+        view.updateOverrideLocale(prefsManager.numFormatLocale as Locale)
     }
 
     override fun onNumberFormatClicked() {
-        router!!.startItemPicker(languages, t(R.string.prefs__pref__number_format__picker_title))
+        val selected = languages.firstOrNull { it.locale == prefsManager.numFormatLocale }
+        router!!.startItemPicker(languages, t(R.string.prefs__pref__number_format__picker_title), selected)
     }
 
-    override fun onNumberFormatSelected(language: String) {
-        prefsManager.numFormatLanguageCode = language
+    override fun onNumberFormatSelected(locale: Locale) {
+        prefsManager.numFormatLocale = locale
     }
 
     override fun onNumberFormatChanged() {
-        view.updateNumberFormat(prefsManager.numFormatLanguageCode)
+        view.updateNumberFormat()
     }
 
     override fun provideNumberFormatSummary(): CharSequence {
-        val locale = prefsManager.numFormatLocale
-        val default = Locale.getDefault()
-        return if (locale == default) {
-            t(R.string.prefs__pref__number_format_default, default.displayLanguage)
-        } else {
+        val locale = prefsManager.numFormatLocale as Locale
+        return if (locale.displayCountry.isBlank()) {
             locale.displayLanguage
+        } else {
+            "%s (%s)".format(locale.displayLanguage, locale.displayCountry)
+        }
+    }
+
+    override fun onOverrideLocaleChanged(enabled: Boolean) {
+        if (!enabled) {
+            prefsManager.numFormatLocale = null
         }
     }
 }

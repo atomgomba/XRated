@@ -16,9 +16,9 @@ import javax.inject.Inject
 class PrefsScreenRouter @Inject constructor(
     private val interrogator: Interrogator
 ) : BaseRouter(), Router {
-    override fun startItemPicker(items: List<Pickable>, title: CharSequence) {
+    override fun startItemPicker(items: List<Pickable>, title: CharSequence, selected: Pickable?) {
         interrogator.startActivityForResult(
-            ItemPickerActivity.newIntent(context, ArrayList(items), title), REQUEST_CODE_LANGUAGE_PICKER
+            ItemPickerActivity.newIntent(context, ArrayList(items), title, selected), REQUEST_CODE_LANGUAGE_PICKER
         )
     }
 }

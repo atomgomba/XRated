@@ -45,20 +45,24 @@ class PrefsManager @Inject constructor(@Named(APP) context: Context) : Coroutine
             publishChange(PREF_FAVORITES)
         }
 
-    var numFormatLanguageCode: String
-        get() = prefs.getString(PREF_NUM_FORMAT_LANGUAGE, "")!!
+    var numFormatLocale: Locale?
+        get() {
+            val lang = prefs.getString(PREF_NUM_FORMAT_LANGUAGE, null) ?: return Locale.getDefault()
+            val country = prefs.getString(PREF_NUM_FORMAT_COUNTRY, null) ?: return Locale.getDefault()
+            return Locale(lang, country)
+        }
         set(value) {
-            prefs.edit { putString(PREF_NUM_FORMAT_LANGUAGE, value) }
-            updateNumFormatLocale()
+            prefs.edit {
+                if (value != null) {
+                    putString(PREF_NUM_FORMAT_LANGUAGE, value.language)
+                    putString(PREF_NUM_FORMAT_COUNTRY, value.country)
+                } else {
+                    remove(PREF_NUM_FORMAT_LANGUAGE)
+                    remove(PREF_NUM_FORMAT_COUNTRY)
+                }
+            }
             publishChange(PREF_NUM_FORMAT_LANGUAGE)
         }
-
-    var numFormatLocale: Locale = Locale.getDefault()
-        private set
-
-    init {
-        updateNumFormatLocale()
-    }
 
     private fun publishChange(key: String) {
         launch {
@@ -66,19 +70,12 @@ class PrefsManager @Inject constructor(@Named(APP) context: Context) : Coroutine
         }
     }
 
-    private fun updateNumFormatLocale() {
-        val value = numFormatLanguageCode
-        numFormatLocale = if (value.isEmpty()) {
-            Locale.getDefault()
-        } else {
-            Locale(value)
-        }
-    }
-
     companion object {
         const val PREF_BASE_CURRENCY = "baseCurrency"
         const val PREF_BASE_AMOUNT = "baseAmount"
         const val PREF_FAVORITES = "favorites"
-        const val PREF_NUM_FORMAT_LANGUAGE = "numberFormatLocale"
+        const val PREF_NUM_FORMAT_LANGUAGE = "numberFormatLanguage"
+
+        private const val PREF_NUM_FORMAT_COUNTRY = "numberFormatCountry"
     }
 }
