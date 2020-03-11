@@ -2,6 +2,8 @@
 <font-family
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:targetApi="o"
     >
     <font
         android:font="@font/inter_regular"

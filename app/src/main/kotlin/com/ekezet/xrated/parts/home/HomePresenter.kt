@@ -6,14 +6,13 @@ import com.ekezet.xrated.R
 import com.ekezet.xrated.base.BasePresenter
 import com.ekezet.xrated.base.di.ActivityScope
 import com.ekezet.xrated.di.MENU
-import com.ekezet.xrated.parts.home.HomeSpec.Interactor
-import com.ekezet.xrated.parts.home.HomeSpec.Router
-import com.ekezet.xrated.parts.home.HomeSpec.View
+import com.ekezet.xrated.parts.home.HomeSpec.*
 import com.ekezet.xrated.parts.home.parts.baseAmountEditor.BaseAmountEditorPart
 import com.ekezet.xrated.parts.home.parts.bottomMenu.BottomMenuPart
 import com.ekezet.xrated.parts.home.parts.bottomMenu.BottomMenuSpec
 import com.ekezet.xrated.parts.home.parts.progressIndicator.ProgressIndicatorPart
 import com.ekezet.xrated.viewmodels.NavigationItem
+import dagger.Lazy
 import javax.inject.Inject
 import javax.inject.Named
 
@@ -22,11 +21,11 @@ import javax.inject.Named
  */
 @ActivityScope
 class HomePresenter @Inject constructor(
-    private val bottomMenu: BottomMenuPart,
-    private val baseAmountEditor: BaseAmountEditorPart,
+    private val bottomMenu: Lazy<BottomMenuPart>,
+    private val baseAmountEditor: Lazy<BaseAmountEditorPart>,
     @Named(MENU) private val menuItems: List<NavigationItem>,
-    private val bottomMenuView: BottomMenuSpec.View,
-    private val progressIndicator: ProgressIndicatorPart
+    private val progressIndicator: Lazy<ProgressIndicatorPart>,
+    private val bottomMenuView: Lazy<BottomMenuSpec.View>
 ) : BasePresenter<View, Interactor, Router>(),
     View.Presenter, Interactor.Presenter {
     private val pageIndexMap: MutableMap<Int, Int> = HashMap()
@@ -43,9 +42,9 @@ class HomePresenter @Inject constructor(
         super.onCreate(owner)
         with(view) {
             setup(R.layout.activity_home)
-            mountBottomMenu(bottomMenu)
-            mountBaseAmountEditor(baseAmountEditor)
-            mountProgressIndicator(progressIndicator)
+            mountBottomMenu(bottomMenu.get())
+            mountBaseAmountEditor(baseAmountEditor.get())
+            mountProgressIndicator(progressIndicator.get())
             setNavigationItems(menuItems)
         }
     }
@@ -82,7 +81,7 @@ class HomePresenter @Inject constructor(
 
     override fun onUserScrolledToPage(index: Int) {
         val pageId = pageIdMap[index] ?: 0
-        bottomMenuView.activateMenuItem(pageId)
+        bottomMenuView.get().activateMenuItem(pageId)
     }
 
     private fun leaveInfoPage() {

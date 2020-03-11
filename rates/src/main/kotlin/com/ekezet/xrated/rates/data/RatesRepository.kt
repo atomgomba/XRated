@@ -6,12 +6,9 @@ import com.ekezet.xrated.rates.api.ExchangeRatesApiInterface
 import com.ekezet.xrated.rates.api.responses.ExchangeRatesResponse
 import com.ekezet.xrated.rates.data.cache.RatesCacheKey
 import com.ekezet.xrated.rates.di.ExchangeRatesStore
-import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Deferred
-import kotlinx.coroutines.Dispatchers
+import dagger.Lazy
+import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.ConflatedBroadcastChannel
-import kotlinx.coroutines.coroutineScope
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -20,13 +17,14 @@ import javax.inject.Singleton
  */
 @Singleton
 class RatesRepository constructor(
-    private val apiInterface: ExchangeRatesApiInterface,
-    private val cacheStore: ExchangeRatesStore,
+    private val apiInterface: Lazy<ExchangeRatesApiInterface>,
+    private val cacheStore: Lazy<ExchangeRatesStore>,
     dispatcher: CoroutineDispatcher
 ) : CoroutineScope {
+
     @Inject constructor(
-        apiInterface: ExchangeRatesApiInterface,
-        cacheStore: ExchangeRatesStore
+        apiInterface: Lazy<ExchangeRatesApiInterface>,
+        cacheStore: Lazy<ExchangeRatesStore>
     ) : this(apiInterface, cacheStore, Dispatchers.IO)
 
     override val coroutineContext = dispatcher
@@ -41,12 +39,13 @@ class RatesRepository constructor(
     suspend fun fetchDailyRates(day: String, baseCurrency: String) = coroutineScope {
         deferredResponse?.await()
         deferredResponse = callOnChannel(exchangeRatesChannel) {
+            val cacheStore = cacheStore.get()
             val cacheKey = RatesCacheKey(day)
             val cachedRates = cacheStore.get(cacheKey) ?: HashMap()
             if (cachedRates.contains(baseCurrency)) {
                 return@callOnChannel exchangeApiBugfix(cachedRates.getValue(baseCurrency).toList(), baseCurrency)
             }
-            val response = apiInterface.getDailyRates(day, mapOf("base" to baseCurrency))
+            val response = apiInterface.get().getDailyRates(day, mapOf("base" to baseCurrency))
             cachedRates[baseCurrency] = response
             cacheStore.put(cacheKey, cachedRates, updateExistingData = true)
             return@callOnChannel exchangeApiBugfix(response.toList(), baseCurrency)

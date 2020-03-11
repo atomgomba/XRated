@@ -5,6 +5,7 @@ import androidx.annotation.CallSuper
 import com.ekezet.xrated.base.arch.IPresenter
 import com.ekezet.xrated.base.arch.IView
 import com.ekezet.xrated.base.arch.Part
+import dagger.Lazy
 import dagger.android.support.DaggerAppCompatActivity
 import javax.inject.Inject
 
@@ -12,13 +13,14 @@ import javax.inject.Inject
  * @author kiri
  */
 open class BaseActivity<A : Part<V, VP, *>, V : IView, VP : IPresenter<V>> : DaggerAppCompatActivity(), IView {
-    @Inject internal lateinit var part: A
+    @Inject internal lateinit var part: Lazy<A>
 
     protected lateinit var presenter: VP
         private set
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val part = part.get()
         presenter = part.presenter
         @Suppress("UNCHECKED_CAST")
         part.bootWithView(this as V, lifecycle)

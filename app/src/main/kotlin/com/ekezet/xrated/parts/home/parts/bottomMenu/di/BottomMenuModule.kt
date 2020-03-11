@@ -20,7 +20,7 @@ import dagger.Provides
         Binder::class
     ]
 )
-class BottomMenuModule {
+object BottomMenuModule {
     @Module
     abstract class Binder {
         @Binds @ActivityScope abstract fun bindView(view: BottomMenuView): View

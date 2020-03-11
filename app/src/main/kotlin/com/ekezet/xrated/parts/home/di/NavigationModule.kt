@@ -24,7 +24,7 @@ import javax.inject.Named
         InfoPageModule::class
     ]
 )
-class NavigationModule {
+object NavigationModule {
     @Provides @Named(MENU) @ActivityScope fun provideMenuItems(
         ratesListPart: RatesListPart,
         favoritesListPart: FavoritesListPart,

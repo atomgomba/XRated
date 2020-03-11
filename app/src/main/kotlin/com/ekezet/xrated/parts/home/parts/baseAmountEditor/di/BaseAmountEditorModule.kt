@@ -20,7 +20,7 @@ import dagger.Provides
         Binder::class
     ]
 )
-class BaseAmountEditorModule {
+object BaseAmountEditorModule {
     @Module
     abstract class Binder {
         @Binds @ActivityScope abstract fun bindView(view: BaseAmountEditorView): View

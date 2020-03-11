@@ -27,7 +27,7 @@ import javax.inject.Singleton
  * @author kiri
  */
 @Module
-class RatesModule {
+object RatesModule {
     @Provides @Singleton fun provideRatesRetrofitApiInterface(
         okHttpClient: OkHttpClient,
         moshi: Moshi

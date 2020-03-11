@@ -8,9 +8,10 @@
         <item name="colorSecondary">@color/colorSecondary</item>
 
         <item name="android:fontFamily">@font/inter_font_family</item>
+        <item name="fontFamily">@font/inter_font_family</item>
     </style>
 
-    <style name="BaseTheme.NoActionBar">
+    <style name="BaseTheme.NoActionBar" parent="BaseTheme">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>

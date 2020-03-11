@@ -11,6 +11,6 @@ import javax.inject.Named
  * @author kiri
  */
 @Module
-class AppModule {
+object AppModule {
     @Provides @Named(APP) fun provideAppContext(app: App): Context = app.applicationContext
 }

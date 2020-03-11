@@ -20,7 +20,7 @@ import dagger.Provides
         Binder::class
     ]
 )
-class InfoPageModule {
+object InfoPageModule {
     @Module
     abstract class Binder {
         @Binds @ActivityScope abstract fun bindView(view: InfoPageView): View

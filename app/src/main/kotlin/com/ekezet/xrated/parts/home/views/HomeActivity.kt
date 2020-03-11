@@ -14,11 +14,12 @@ import com.ekezet.xrated.parts.home.HomeSpec.View
 import com.ekezet.xrated.parts.home.parts.progressIndicator.ProgressIndicatorPart
 import com.ekezet.xrated.viewmodels.NavigationItem
 import com.google.android.material.snackbar.Snackbar
+import dagger.Lazy
 import kotlinx.android.synthetic.main.activity_home.*
 import javax.inject.Inject
 
 class HomeActivity : BaseActivity<HomePart, View, View.Presenter>(), View {
-    @Inject internal lateinit var menuPagerAdapter: HomePagerAdapter
+    @Inject internal lateinit var menuPagerAdapter: Lazy<HomePagerAdapter>
 
     override var pageIndex: Int
         get() = viewPager.currentItem
@@ -37,7 +38,7 @@ class HomeActivity : BaseActivity<HomePart, View, View.Presenter>(), View {
         super.setup(idRes)
         setSupportActionBar(toolbar)
         supportActionBar!!.setTitle(R.string.home__activity_title)
-        viewPager.adapter = menuPagerAdapter
+        viewPager.adapter = menuPagerAdapter.get()
         viewPager.registerOnPageChangeCallback(MyOnPageChangeCallback())
     }
 
@@ -55,7 +56,7 @@ class HomeActivity : BaseActivity<HomePart, View, View.Presenter>(), View {
 
     override fun setNavigationItems(items: List<NavigationItem>) {
         viewPager.offscreenPageLimit = items.size
-        menuPagerAdapter.setPages(items.map { it.part })
+        menuPagerAdapter.get().setPages(items.map { it.part })
     }
 
     override fun showMessage(text: CharSequence) {

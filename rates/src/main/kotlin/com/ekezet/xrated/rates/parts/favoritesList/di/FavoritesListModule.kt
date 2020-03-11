@@ -24,7 +24,7 @@ import javax.inject.Named
         Binder::class
     ]
 )
-class FavoritesListModule {
+object FavoritesListModule {
     @Module
     abstract class Binder {
         @Binds @ActivityScope abstract fun bindView(view: FavoritesListView): View

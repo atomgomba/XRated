@@ -24,7 +24,7 @@ import javax.inject.Named
         Binder::class
     ]
 )
-class RatesListModule {
+object RatesListModule {
     @Module
     abstract class Binder {
         @Binds @ActivityScope abstract fun bindView(view: RatesListView): View

@@ -14,7 +14,7 @@ import javax.inject.Singleton
  * @author kiri
  */
 @Module
-class BaseModule {
+object BaseModule {
     @Provides @Singleton fun provideOkHttpClient() =
         OkHttpClient.Builder()
             .addInterceptor(HttpLoggingInterceptor().apply {

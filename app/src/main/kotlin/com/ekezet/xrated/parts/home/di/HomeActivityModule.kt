@@ -8,9 +8,7 @@ import com.ekezet.xrated.parts.home.HomeInteractor
 import com.ekezet.xrated.parts.home.HomePart
 import com.ekezet.xrated.parts.home.HomePresenter
 import com.ekezet.xrated.parts.home.HomeRouter
-import com.ekezet.xrated.parts.home.HomeSpec.Interactor
-import com.ekezet.xrated.parts.home.HomeSpec.Router
-import com.ekezet.xrated.parts.home.HomeSpec.View
+import com.ekezet.xrated.parts.home.HomeSpec.*
 import com.ekezet.xrated.parts.home.di.HomeActivityModule.Binder
 import com.ekezet.xrated.parts.home.parts.baseAmountEditor.di.BaseAmountEditorModule
 import com.ekezet.xrated.parts.home.parts.bottomMenu.di.BottomMenuModule
@@ -33,7 +31,7 @@ import javax.inject.Named
         ProgressIndicatorModule::class
     ]
 )
-class HomeActivityModule {
+object HomeActivityModule {
     @Module
     abstract class Binder {
         @Binds @ActivityScope abstract fun bindContext(activity: HomeActivity): Context

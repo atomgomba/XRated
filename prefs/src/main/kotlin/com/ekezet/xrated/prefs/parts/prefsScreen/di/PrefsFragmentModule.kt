@@ -7,9 +7,7 @@ import com.ekezet.xrated.prefs.parts.prefsScreen.PrefsScreenInteractor
 import com.ekezet.xrated.prefs.parts.prefsScreen.PrefsScreenPart
 import com.ekezet.xrated.prefs.parts.prefsScreen.PrefsScreenPresenter
 import com.ekezet.xrated.prefs.parts.prefsScreen.PrefsScreenRouter
-import com.ekezet.xrated.prefs.parts.prefsScreen.PrefsScreenSpec.Interactor
-import com.ekezet.xrated.prefs.parts.prefsScreen.PrefsScreenSpec.Router
-import com.ekezet.xrated.prefs.parts.prefsScreen.PrefsScreenSpec.View
+import com.ekezet.xrated.prefs.parts.prefsScreen.PrefsScreenSpec.*
 import com.ekezet.xrated.prefs.parts.prefsScreen.di.PrefsFragmentModule.Binder
 import com.ekezet.xrated.prefs.parts.prefsScreen.views.PreferencesActivity
 import com.ekezet.xrated.prefs.parts.prefsScreen.views.PreferencesFragment
@@ -25,7 +23,7 @@ import dagger.Provides
         Binder::class
     ]
 )
-class PrefsFragmentModule {
+object PrefsFragmentModule {
     @Module
     abstract class Binder {
         @Binds @FragmentScope abstract fun bindContext(activity: PreferencesActivity): Context
