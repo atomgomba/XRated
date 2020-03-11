@@ -11,6 +11,10 @@ To get the latest stable version check out [XRated on Google Play](https://play.
 
 ## Changes
 
+### 0.2.1
+
+* Performance improvements
+
 ### 0.2.0
 
 #### New features
