@@ -6,6 +6,7 @@ import com.ekezet.xrated.rates.api.responses.ExchangeRatesResponse
 import com.ekezet.xrated.rates.data.cache.RatesCacheKey
 import com.ekezet.xrated.rates.di.ExchangeRatesStore
 import com.ekezet.xrated.testing.BlockingDispatcher
+import dagger.Lazy
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.every
@@ -34,7 +35,7 @@ internal class RatesRepositoryTest : CoroutineScope {
     private lateinit var subject: RatesRepository
 
     @BeforeEach fun setUp() {
-        subject = RatesRepository(apiInterface, cacheStore, coroutineContext)
+        subject = RatesRepository(Lazy { apiInterface }, Lazy { cacheStore }, coroutineContext)
     }
 
     @Test fun `fetchLatestDailyRates and no existing data`() {
