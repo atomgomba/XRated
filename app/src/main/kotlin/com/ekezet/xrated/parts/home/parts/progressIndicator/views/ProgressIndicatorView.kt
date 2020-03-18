@@ -45,7 +45,7 @@ class ProgressIndicatorView @Inject constructor(context: Context) : BaseView(con
     private lateinit var canvas: Canvas
     private val paint: Paint = Paint().apply {
         style = FILL
-        color = context.getColor(R.color.colorSecondaryLight)
+        color = context.getColor(R.color.colorAccent)
     }
     private var lineWidth = 0
 
