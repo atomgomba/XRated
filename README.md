@@ -13,6 +13,10 @@ To get the latest stable version check out [XRated on Google Play](https://play.
 
 ### 0.2.1
 
+* Add switch to restore default locale
+* Complete list of available languages
+* Prevent loading indicator to be in the same state multiple times
+* More dark colors for night mode
 * Performance improvements
 
 ### 0.2.0
