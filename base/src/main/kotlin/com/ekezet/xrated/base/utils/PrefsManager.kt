@@ -48,8 +48,12 @@ class PrefsManager @Inject constructor(@Named(APP) context: Context) : Coroutine
     var numFormatLocale: Locale?
         get() {
             val lang = prefs.getString(PREF_NUM_FORMAT_LANGUAGE, null) ?: return Locale.getDefault()
-            val country = prefs.getString(PREF_NUM_FORMAT_COUNTRY, null) ?: return Locale.getDefault()
-            return Locale(lang, country)
+            val country = prefs.getString(PREF_NUM_FORMAT_COUNTRY, null)
+            return if (country == null)
+                // for backward compatibility with 0.2.0
+                Locale(lang)
+            else
+                Locale(lang, country)
         }
         set(value) {
             prefs.edit {
