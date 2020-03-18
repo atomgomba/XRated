@@ -7,8 +7,12 @@ import com.ekezet.xrated.rates.api.responses.ExchangeRatesResponse
 import com.ekezet.xrated.rates.data.cache.RatesCacheKey
 import com.ekezet.xrated.rates.di.ExchangeRatesStore
 import dagger.Lazy
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Deferred
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.ConflatedBroadcastChannel
+import kotlinx.coroutines.coroutineScope
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -37,7 +41,10 @@ class RatesRepository constructor(
         fetchDailyRates("latest", baseCurrency)
 
     suspend fun fetchDailyRates(day: String, baseCurrency: String) = coroutineScope {
-        deferredResponse?.await()
+        if (deferredResponse?.isActive == true) {
+            deferredResponse?.await()
+            return@coroutineScope
+        }
         deferredResponse = callOnChannel(exchangeRatesChannel) {
             val cacheStore = cacheStore.get()
             val cacheKey = RatesCacheKey(day)
