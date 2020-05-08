@@ -39,6 +39,10 @@ class App : DaggerApplication() {
                 super.log(priority, tag, message, t)
             }
         }
+
+        override fun createStackElementTag(element: StackTraceElement) = with(element) {
+            "($fileName:$lineNumber)"
+        }
     }
 
     private inner class ProductionTree : Timber.Tree() {
